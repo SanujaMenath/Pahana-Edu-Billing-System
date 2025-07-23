@@ -27,22 +27,5 @@ A simple web-based billing system built with **Java Servlets**, **JSP**, and **M
 ---
 
 ## 📁 Project Structure 
-PahanaEduBillingSystem/
-│
-├── src/
-│   └── main/
-│       ├── java/
-│       │   └── com.pahanaedu/
-│       │       ├── servlet/
-│       │       │   ├── LoginServlet.java
-│       │       │   └── DBTestServlet.java
-│       │       └── util/
-│       │           └── DBUtil.java
-│       └── webapp/
-│           ├── WEB-INF/
-│           │   └── web.xml
-│           └── index.jsp
-│
-├── pom.xml
-└── README.md
+---
 
