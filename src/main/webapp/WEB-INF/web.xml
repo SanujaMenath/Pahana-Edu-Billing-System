@@ -21,6 +21,11 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>business.servlet.LogoutServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-class>business.servlet.CustomerServlet</servlet-class>
+    </servlet>
     <!-- Then all <servlet-mapping> elements -->
 
     <servlet-mapping>
@@ -33,10 +38,14 @@
         <url-pattern>/dbtest</url-pattern>
     </servlet-mapping>
 
-
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/add-customer</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

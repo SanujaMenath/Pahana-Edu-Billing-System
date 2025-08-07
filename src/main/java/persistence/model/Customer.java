@@ -4,8 +4,19 @@ public class Customer {
     private int accountNumber;
     private String name;
     private String address;
-    private String telephone;
+    private String phone;
     private int unitsConsumed;
+
+
+
+    public Customer() {
+    }
+
+    public Customer(String name, String phone, String address) {
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+    }
 
     public String getName() {
         return name;
@@ -32,11 +43,11 @@ public class Customer {
     }
 
     public String getTelephone() {
-        return telephone;
+        return phone;
     }
 
     public void setTelephone(String telephone) {
-        this.telephone = telephone;
+        this.phone = telephone;
     }
 
     public int getUnitsConsumed() {
@@ -47,6 +58,5 @@ public class Customer {
         this.unitsConsumed = unitsConsumed;
     }
 
-    public Customer() {
-    }
+
 }

@@ -1,6 +1,6 @@
 package business.servlet;
 
-import business.auth.UserService;
+import business.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.*;
