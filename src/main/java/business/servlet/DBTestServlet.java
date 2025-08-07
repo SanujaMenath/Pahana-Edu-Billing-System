@@ -1,6 +1,6 @@
-package com.pahanaedu.servlet;
+package business.servlet;
 
-import com.pahanaedu.util.DBUtil;
+import util.DBUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 
@@ -14,9 +14,9 @@ public class DBTestServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             Connection conn = DBUtil.getConnection();
             if (conn != null) {
-                out.println("✅ Database connected successfully!");
+                out.println("Database connected successfully!");
             } else {
-                out.println("❌ Failed to connect to the database.");
+                out.println("Failed to connect to the database.");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
