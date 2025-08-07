@@ -1,33 +1,34 @@
+
+
 <html>
 <head>
     <title>Pahana Edu Billing System - Login</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" >
 </head>
 <body>
     <div class="login-container">
         <h2>Login to Pahana Edu Billing System</h2>
         <form action="login" method="post">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
+            <label for="username">Username:</label>
+            <input id="username" name="username" type="text" />
 
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <button type="submit">Login</button>
-            </div>
-            <div class="form-group">
-                <p>Don't have an account? <a href="register.jsp">Register here</a></p>
-            </div>
+            <br/>
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password" required />
+            <br/>
+            <button type="submit">Login</button>
         </form>
-        <div class="error-message">
-            <% if (request.getAttribute("errorMessage") != null) { %>
-                <p><%= request.getAttribute("errorMessage") %></p>
-            <% } %>
-        </div>
+
+        <%
+            String error = (String) request.getAttribute("error");
+            if (error != null) {
+        %>
+        <div style="color:red;"><%= error %></div>
+        <%
+            }
+        %>
+
+
     </div>
     <footer>
         <p>&copy; 2023 Pahana Edu Billing System. All rights reserved.</p>

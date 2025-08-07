@@ -1,16 +1,16 @@
-package com.pahanaedu.model;
+package persistence.model;
 
 public class User {
     private int id;
     private String username;
     private String password;
-    private Role role;
 
     public enum Role {
         admin,
         staff,
         customer
     }
+    private Role role;
 
     public User() {
     }
@@ -43,9 +43,7 @@ public class User {
         return role;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+    public void setRole(Role role) { this.role = role; }
 
     public int getId() {
         return id;
