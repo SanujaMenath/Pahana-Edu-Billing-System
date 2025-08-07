@@ -1,4 +1,4 @@
-package business.auth;
+package business.service;
 
 import persistence.dao.UserDAO;
 import persistence.model.User;
