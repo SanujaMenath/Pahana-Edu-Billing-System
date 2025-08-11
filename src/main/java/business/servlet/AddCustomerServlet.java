@@ -1,0 +1,36 @@
+package business.servlet;
+
+import business.service.CustomerService;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.*;
+import persistence.model.Customer;
+
+import java.io.*;
+
+@WebServlet("/manageCustomers/add-customer")
+public class AddCustomerServlet extends HttpServlet {
+    private CustomerService customerService = new CustomerService();
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setTelephone(phone);
+        customer.setAddress(address);
+
+        try {
+            customerService.addCustomer(customer);
+            response.sendRedirect(request.getContextPath() + "/manageCustomers/manage-customers.jsp");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+    }
+}

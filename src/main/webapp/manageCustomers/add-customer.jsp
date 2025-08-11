@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Pahan Edu - Add Customer</title>
-    <link rel="stylesheet" type="text/css" href="css/add-customer.css">
+    <link rel="stylesheet" type="text/css" href="../css/add-customer.css">
 </head>
 <body>
 <div class="form-container">
