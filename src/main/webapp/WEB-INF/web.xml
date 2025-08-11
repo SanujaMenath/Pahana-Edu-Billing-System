@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>CustomerServlet</servlet-name>
-        <servlet-class>business.servlet.CustomerServlet</servlet-class>
+        <servlet-class>business.servlet.AddCustomerServlet</servlet-class>
     </servlet>
     <!-- Then all <servlet-mapping> elements -->
 

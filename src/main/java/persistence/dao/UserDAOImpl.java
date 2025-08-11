@@ -12,7 +12,7 @@ public class UserDAOImpl implements UserDAO {
         User user = null;
 
         try {
-            Connection conn = DBUtil.getConnection(); // You must have this helper class
+            Connection conn = DBUtil.getConnection();
             String sql = "SELECT * FROM users WHERE username = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);

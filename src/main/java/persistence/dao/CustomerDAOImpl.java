@@ -12,31 +12,42 @@ public class CustomerDAOImpl implements CustomerDAO {
         return DBUtil.getConnection();
     }
 
-    @Override
-    public void addCustomer(Customer customer) throws Exception {
-        String sql = "INSERT INTO customers (name, address, phone, units_consumed) VALUES (?, ?, ?, ?)";
+    private int generateAccountNumber() throws Exception {
+        String sql = "SELECT MAX(account_number) FROM customers";
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
-            stmt.setString(1, customer.getName());
-            stmt.setString(2, customer.getAddress());
-            stmt.setString(3, customer.getTelephone());
-            stmt.setInt(4, customer.getUnitsConsumed());
-
-            int affectedRows = stmt.executeUpdate();
-            if (affectedRows == 0) {
-                throw new SQLException("Creating customer failed, no rows affected.");
-            }
-
-            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    customer.setAccountNumber(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Creating customer failed, no ID obtained.");
-                }
+            if (rs.next()) {
+                int maxAccountNumber = rs.getInt(1);
+                return maxAccountNumber + 1;
+            } else {
+                return 1000;
             }
         }
     }
+
+
+    @Override
+    public void addCustomer(Customer customer) throws Exception {
+        // Generate the account number
+        int newAccountNumber = generateAccountNumber();
+        customer.setAccountNumber(newAccountNumber);
+
+        String sql = "INSERT INTO customers (account_number, name, address, phone, units_consumed) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, customer.getAccountNumber());
+            stmt.setString(2, customer.getName());
+            stmt.setString(3, customer.getAddress());
+            stmt.setString(4, customer.getTelephone());
+            stmt.setInt(5, customer.getUnitsConsumed());
+
+            stmt.executeUpdate();
+        }
+    }
+
 
     @Override
     public void updateCustomer(Customer customer) throws Exception {
@@ -55,15 +66,20 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void deleteCustomer(int accountNumber) throws Exception {
-        String sql = "DELETE FROM customers WHERE account_number=?";
+    public boolean deleteCustomer(int accountNumber) {
+        String sql = "DELETE FROM customers WHERE account_number = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, accountNumber);
-            stmt.executeUpdate();
+            return stmt.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return false;
     }
+
 
     @Override
     public Customer getCustomerByAccountNumber(int accountNumber) throws Exception {
