@@ -1,6 +1,6 @@
 package business.servlet;
 
-import business.auth.UserService;
+import business.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.*;
@@ -14,7 +14,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() {
-        userService = new UserService(new UserDAOImpl()); // Make sure this is working
+        userService = new UserService(new UserDAOImpl());
     }
 
     @Override
@@ -26,10 +26,24 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
-            resp.sendRedirect("dashboard.jsp");
+
+            String role = user.getRole().toString().toUpperCase();
+
+            switch (role) {
+                case "ADMIN":
+                    resp.sendRedirect(req.getContextPath() + "/admin-dashboard.jsp");
+                    break;
+                case "STAFF":
+                    resp.sendRedirect(req.getContextPath() + "/staff-dashboard.jsp");
+                    break;
+                default:
+                    resp.sendRedirect(req.getContextPath() + "/unauthorized.jsp");
+                    break;
+            }
         } else {
             req.setAttribute("error", "Invalid username or password");
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }
+
 }
