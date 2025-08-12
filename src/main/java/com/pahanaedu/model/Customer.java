@@ -1,4 +1,4 @@
-package persistence.model;
+package com.pahanaedu.model;
 
 public class Customer {
     private int accountNumber;

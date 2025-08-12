@@ -1,4 +1,4 @@
-package util;
+package com.pahanaedu.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,8 +1,8 @@
 <%@ page import="java.util.List" %>
-<%@ page import="persistence.model.Customer" %>
-<%@ page import="persistence.dao.CustomerDAO" %>
-<%@ page import="persistence.dao.CustomerDAOImpl" %>
-<%@ page import="persistence.model.User" %>
+<%@ page import="com.pahanaedu.model.Customer" %>
+<%@ page import="dao.CustomerDAO" %>
+<%@ page import="dao.CustomerDAOImpl" %>
+<%@ page import="com.pahanaedu.model.User" %>
 
 <%
   // Check if user is logged in

@@ -9,22 +9,22 @@
     <!-- All <servlet> elements first -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>business.servlet.LoginServlet</servlet-class>
+        <servlet-class>com.pahanaedu.web.servlet.LoginServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>DBTestServlet</servlet-name>
-        <servlet-class>business.servlet.DBTestServlet</servlet-class>
+        <servlet-class>com.pahanaedu.web.servlet.DBTestServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>business.servlet.LogoutServlet</servlet-class>
+        <servlet-class>com.pahanaedu.web.servlet.LogoutServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>CustomerServlet</servlet-name>
-        <servlet-class>business.servlet.AddCustomerServlet</servlet-class>
+        <servlet-class>com.pahanaedu.web.servlet.customer.AddCustomerServlet</servlet-class>
     </servlet>
     <!-- Then all <servlet-mapping> elements -->
 

@@ -1,8 +1,8 @@
-package business.service;
+package com.pahanaedu.service;
 
-import persistence.dao.CustomerDAO;
-import persistence.dao.CustomerDAOImpl;
-import persistence.model.Customer;
+import dao.CustomerDAO;
+import dao.CustomerDAOImpl;
+import com.pahanaedu.model.Customer;
 
 import java.util.List;
 

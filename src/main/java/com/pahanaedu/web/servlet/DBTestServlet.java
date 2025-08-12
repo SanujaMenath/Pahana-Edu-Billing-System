@@ -1,6 +1,6 @@
-package business.servlet;
+package com.pahanaedu.web.servlet;
 
-import util.DBUtil;
+import com.pahanaedu.util.DBUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 

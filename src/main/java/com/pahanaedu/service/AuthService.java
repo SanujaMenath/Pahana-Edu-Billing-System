@@ -1,7 +1,7 @@
-package business.service;
-import persistence.dao.UserDAO;
-import persistence.dao.UserDAOImpl;
-import persistence.model.User;
+package com.pahanaedu.service;
+import dao.UserDAO;
+import dao.UserDAOImpl;
+import com.pahanaedu.model.User;
 
 public class AuthService {
     private UserDAO userDAO;

@@ -1,11 +1,11 @@
-package business.servlet;
+package com.pahanaedu.web.servlet.customer;
 
-import business.service.CustomerService;
+import com.pahanaedu.service.CustomerService;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.*;
-import persistence.model.Customer;
+import com.pahanaedu.model.Customer;
 
 import java.io.*;
 

@@ -1,7 +1,7 @@
-package persistence.dao;
+package dao;
 
-import persistence.model.User;
-import util.DBUtil;
+import com.pahanaedu.model.User;
+import com.pahanaedu.util.DBUtil;
 
 import java.sql.*;
 
