@@ -1,6 +1,6 @@
-package persistence.dao;
+package dao;
 
-import persistence.model.User;
+import com.pahanaedu.model.User;
 
 public interface UserDAO {
     User findByUsername(String username);

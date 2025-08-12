@@ -1,6 +1,6 @@
-package persistence.dao;
+package dao;
 
-import persistence.model.Customer;
+import com.pahanaedu.model.Customer;
 
 import java.util.List;
 

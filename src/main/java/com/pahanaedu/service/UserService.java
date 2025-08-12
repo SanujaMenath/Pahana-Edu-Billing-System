@@ -1,7 +1,7 @@
-package business.service;
+package com.pahanaedu.service;
 
-import persistence.dao.UserDAO;
-import persistence.model.User;
+import dao.UserDAO;
+import com.pahanaedu.model.User;
 
 public class UserService {
     private final UserDAO userDAO;

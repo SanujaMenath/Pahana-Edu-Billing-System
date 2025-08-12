@@ -1,11 +1,11 @@
-package business.servlet;
+package com.pahanaedu.web.servlet;
 
-import business.service.UserService;
+import com.pahanaedu.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.*;
-import persistence.dao.UserDAOImpl;
-import persistence.model.User;
+import dao.UserDAOImpl;
+import com.pahanaedu.model.User;
 
 import java.io.IOException;
 

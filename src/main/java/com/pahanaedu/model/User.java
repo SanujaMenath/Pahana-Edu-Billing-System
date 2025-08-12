@@ -1,4 +1,4 @@
-package persistence.model;
+package com.pahanaedu.model;
 
 public class User {
     private int id;

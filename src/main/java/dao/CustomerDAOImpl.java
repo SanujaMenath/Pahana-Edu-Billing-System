@@ -1,7 +1,7 @@
-package persistence.dao;
+package dao;
 
-import persistence.model.Customer;
-import util.DBUtil;
+import com.pahanaedu.model.Customer;
+import com.pahanaedu.util.DBUtil;
 
 import java.sql.*;
 import java.util.ArrayList;

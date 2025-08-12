@@ -1,5 +1,5 @@
-<%@ page import="persistence.model.Customer, persistence.dao.CustomerDAO" %>
-<%@ page import="persistence.dao.CustomerDAOImpl" %>
+<%@ page import="com.pahanaedu.model.Customer, dao.CustomerDAO" %>
+<%@ page import="dao.CustomerDAOImpl" %>
 <%
     int accountNumber = Integer.parseInt(request.getParameter("accountNumber"));
     CustomerDAO dao = new CustomerDAOImpl();

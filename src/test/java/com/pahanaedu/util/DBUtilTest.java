@@ -1,7 +1,6 @@
 package com.pahanaedu.util;
 
 import org.junit.jupiter.api.Test;
-import util.DBUtil;
 
 import java.sql.Connection;
 

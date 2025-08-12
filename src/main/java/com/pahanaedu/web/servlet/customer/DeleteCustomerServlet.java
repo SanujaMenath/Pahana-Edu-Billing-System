@@ -1,4 +1,4 @@
-package business.servlet;
+package com.pahanaedu.web.servlet.customer;
 
 
 import jakarta.servlet.ServletException;
@@ -6,8 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import persistence.dao.CustomerDAO;
-import persistence.dao.CustomerDAOImpl;
+import dao.CustomerDAO;
+import dao.CustomerDAOImpl;
 
 import java.io.IOException;
 
