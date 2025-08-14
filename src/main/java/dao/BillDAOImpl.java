@@ -1,6 +1,7 @@
 package dao;
 
 import com.pahanaedu.model.Bill;
+import com.pahanaedu.model.BillItem;
 import com.pahanaedu.util.DBUtil;
 
 import java.sql.*;
@@ -10,23 +11,53 @@ import java.util.List;
 public class BillDAOImpl implements BillDAO {
     @Override
     public boolean addBill(Bill bill) throws Exception {
-        String sql = "INSERT INTO bills (customer_id, units_consumed, total_amount) VALUES (?, ?, ?)";
+        String billSql = "INSERT INTO bills (customer_id, date_created, units_consumed, total_amount ) VALUES (?, ?, ?, ?)";
+
         try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setInt(1, bill.getCustomerId());
-            stmt.setInt(2, bill.getUnitsConsumed());
-            stmt.setDouble(3, bill.getTotalAmount());
-            int rowsInserted = stmt.executeUpdate();
-            if (rowsInserted > 0) {
-                ResultSet rs = stmt.getGeneratedKeys();
+             PreparedStatement billStmt = conn.prepareStatement(billSql, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Insert the bill
+            billStmt.setInt(1, bill.getCustomerId());
+            billStmt.setTimestamp(2, new Timestamp(bill.getDateCreated().getTime()));
+            billStmt.setInt(3, bill.getUnitsConsumed());
+            billStmt.setDouble(4, bill.getTotalAmount());
+
+
+            int rowsInserted = billStmt.executeUpdate();
+            if (rowsInserted == 0) {
+                return false;
+            }
+
+            // Get generated bill ID
+            try (ResultSet rs = billStmt.getGeneratedKeys()) {
                 if (rs.next()) {
                     bill.setId(rs.getInt(1));
+                } else {
+                    throw new SQLException("Failed to retrieve bill ID.");
                 }
-                return true;
             }
+
+            // Insert bill items
+            String itemSql = "INSERT INTO bill_items (bill_id, item_id, quantity, price) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement itemStmt = conn.prepareStatement(itemSql)) {
+                for (BillItem bi : bill.getBillItems()) {
+                    itemStmt.setInt(1, bill.getId());
+                    itemStmt.setInt(2, bi.getItemId());
+                    itemStmt.setInt(3, bi.getQuantity());
+                    itemStmt.setDouble(4, bi.getPrice());
+                    itemStmt.addBatch();
+                }
+                itemStmt.executeBatch();
+            }
+
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Error adding bill: " + e.getMessage());
         }
-        return false;
     }
+
 
 
     @Override

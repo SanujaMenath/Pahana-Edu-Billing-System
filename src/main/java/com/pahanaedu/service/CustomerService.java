@@ -53,4 +53,13 @@ public class CustomerService {
     public void deleteCustomer(int accountNumber) throws Exception {
         customerDAO.deleteCustomer(accountNumber);
     }
+
+    public Customer getCustomerByPhone(String phone) {
+        try {
+            return customerDAO.getCustomerByPhone(phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

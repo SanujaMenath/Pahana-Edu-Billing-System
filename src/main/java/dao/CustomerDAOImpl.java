@@ -104,6 +104,30 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
+    public Customer getCustomerByPhone(String phone) throws Exception {
+        Customer customer = null;
+        String query = "SELECT * FROM customers WHERE phone = ?";
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, phone);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                customer = new Customer();
+                customer.setId(rs.getInt("id"));
+                customer.setAccountNumber(rs.getInt("account_number"));
+                customer.setName(rs.getString("name"));
+                customer.setAddress(rs.getString("address"));
+                customer.setPhone(rs.getString("phone"));
+                customer.setUnitsConsumed(rs.getInt("units_consumed"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+
+    @Override
     public List<Customer> getAllCustomers() throws Exception {
         String sql = "SELECT * FROM customers";
         List<Customer> customers = new ArrayList<>();
