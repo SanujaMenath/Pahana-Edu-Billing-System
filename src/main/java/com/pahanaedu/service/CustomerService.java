@@ -19,7 +19,7 @@ public class CustomerService {
             throw new Exception("Customer name cannot be empty.");
         }
 
-        if (customer.getTelephone() == null || customer.getTelephone().isEmpty()) {
+        if (customer.getPhone() == null || customer.getPhone().isEmpty()) {
             throw new Exception("Phone number is required.");
         }
 
@@ -52,5 +52,14 @@ public class CustomerService {
     // Delete a customer
     public void deleteCustomer(int accountNumber) throws Exception {
         customerDAO.deleteCustomer(accountNumber);
+    }
+
+    public Customer getCustomerByPhone(String phone) {
+        try {
+            return customerDAO.getCustomerByPhone(phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
