@@ -21,7 +21,7 @@ public class AddCustomerServlet extends HttpServlet {
 
         Customer customer = new Customer();
         customer.setName(name);
-        customer.setTelephone(phone);
+        customer.setPhone(phone);
         customer.setAddress(address);
 
         try {

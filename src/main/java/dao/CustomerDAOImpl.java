@@ -41,7 +41,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             stmt.setInt(1, customer.getAccountNumber());
             stmt.setString(2, customer.getName());
             stmt.setString(3, customer.getAddress());
-            stmt.setString(4, customer.getTelephone());
+            stmt.setString(4, customer.getPhone());
             stmt.setInt(5, customer.getUnitsConsumed());
 
             stmt.executeUpdate();
@@ -57,7 +57,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getAddress());
-            stmt.setString(3, customer.getTelephone());
+            stmt.setString(3, customer.getPhone());
             stmt.setInt(4, customer.getUnitsConsumed());
             stmt.setInt(5, customer.getAccountNumber());
 
@@ -94,7 +94,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     customer.setAccountNumber(rs.getInt("account_number"));
                     customer.setName(rs.getString("name"));
                     customer.setAddress(rs.getString("address"));
-                    customer.setTelephone(rs.getString("phone"));
+                    customer.setPhone(rs.getString("phone"));
                     customer.setUnitsConsumed(rs.getInt("units_consumed"));
                     return customer;
                 }
@@ -116,7 +116,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                 customer.setAccountNumber(rs.getInt("account_number"));
                 customer.setName(rs.getString("name"));
                 customer.setAddress(rs.getString("address"));
-                customer.setTelephone(rs.getString("phone"));
+                customer.setPhone(rs.getString("phone"));
                 customer.setUnitsConsumed(rs.getInt("units_consumed"));
                 customers.add(customer);
             }

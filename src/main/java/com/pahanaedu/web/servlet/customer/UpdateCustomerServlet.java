@@ -24,7 +24,7 @@ public class UpdateCustomerServlet extends HttpServlet {
             customer.setAccountNumber(Integer.parseInt(request.getParameter("accountNumber")));
             customer.setName(request.getParameter("name"));
             customer.setAddress(request.getParameter("address"));
-            customer.setTelephone(request.getParameter("telephone"));
+            customer.setPhone(request.getParameter("telephone"));
             customer.setUnitsConsumed(Integer.parseInt(request.getParameter("unitsConsumed")));
 
             customerDAO.updateCustomer(customer);

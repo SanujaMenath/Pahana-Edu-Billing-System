@@ -19,7 +19,7 @@ public class CustomerService {
             throw new Exception("Customer name cannot be empty.");
         }
 
-        if (customer.getTelephone() == null || customer.getTelephone().isEmpty()) {
+        if (customer.getPhone() == null || customer.getPhone().isEmpty()) {
             throw new Exception("Phone number is required.");
         }
 

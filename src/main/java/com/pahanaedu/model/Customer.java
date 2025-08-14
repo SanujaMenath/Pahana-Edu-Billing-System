@@ -1,6 +1,7 @@
 package com.pahanaedu.model;
 
 public class Customer {
+    private int id;
     private int accountNumber;
     private String name;
     private String address;
@@ -8,15 +9,19 @@ public class Customer {
     private int unitsConsumed;
 
 
-
     public Customer() {
     }
 
-    public Customer(String name, String phone, String address) {
+    public Customer(int id, String name, String phone, String address) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.address = address;
     }
+
+    public int getId() { return id;}
+
+    public void setId(int id) {this.id = id;}
 
     public String getName() {
         return name;
@@ -42,13 +47,9 @@ public class Customer {
         this.accountNumber = accountNumber;
     }
 
-    public String getTelephone() {
-        return phone;
-    }
+    public String getPhone() {return phone;    }
 
-    public void setTelephone(String telephone) {
-        this.phone = telephone;
-    }
+    public void setPhone(String phone) { this.phone = phone;}
 
     public int getUnitsConsumed() {
         return unitsConsumed;
