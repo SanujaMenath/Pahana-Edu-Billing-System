@@ -68,17 +68,18 @@
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>
-                <select name="itemId" onchange="updateUnitPrice(this)">
-                    <option value="" selected disabled>-- Select --</option>
-                    ${itemOptions}
-                </select>
-            </td>
-            <td><input type="text" name="unitPrice" readonly></td>
-            <td><input type="number" name="unitsConsumed" min="1" value="1" onchange="updateTotal(this)"></td>
-            <td><input type="text" name="totalAmount" readonly></td>
-            <td><button type="button" class="btn-danger" onclick="this.closest('tr').remove()">X</button></td>
-        `;
+    <td>
+        <select name="item_id" onchange="updateUnitPrice(this)">
+            <option value="" selected disabled>-- Select --</option>
+            ${itemOptions}
+        </select>
+    </td>
+    <td><input type="text" name="price" readonly></td>
+    <td><input type="number" name="quantity" min="1" value="1" onchange="updateTotal(this)"></td>
+    <td><input type="text" name="total_amount" readonly></td>
+    <td><button type="button" class="btn-danger" onclick="this.closest('tr').remove()">X</button></td>
+`;
+
 
         tbody.appendChild(row);
     }
@@ -86,15 +87,15 @@
     function updateUnitPrice(select) {
         const price = parseFloat(select.selectedOptions[0].getAttribute("data-unit-price")) || 0;
         const row = select.closest("tr");
-        row.querySelector('input[name="unitPrice"]').value = price.toFixed(2);
-        updateTotal(row.querySelector('input[name="unitsConsumed"]'));
+        row.querySelector('input[name="price"]').value = price.toFixed(2);
+        updateTotal(row.querySelector('input[name="quantity"]'));
     }
 
     function updateTotal(input) {
         const row = input.closest("tr");
-        const price = parseFloat(row.querySelector('input[name="unitPrice"]').value) || 0;
+        const price = parseFloat(row.querySelector('input[name="price"]').value) || 0;
         const units = parseInt(input.value) || 0;
-        row.querySelector('input[name="totalAmount"]').value = (price * units).toFixed(2);
+        row.querySelector('input[name="total_amount"]').value = (price * units).toFixed(2);
     }
 </script>
 </body>
