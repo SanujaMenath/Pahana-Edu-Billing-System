@@ -1,4 +1,4 @@
-<%@ page import="persistence.model.User" %>
+<%@ page import="com.pahanaedu.model.User" %>
 <%
   User user = (User) session.getAttribute("user");
   if (user == null) {
@@ -26,7 +26,11 @@
   <div class="button-group">
     <a href="<%=request.getContextPath()%>/manageCustomers/add-customer.jsp" class="dashboard-btn">Add New Customer</a>
     <a href="<%=request.getContextPath()%>/manageCustomers/manage-customers.jsp" class="dashboard-btn">Manage Customers</a>
-    <a href="<%=request.getContextPath()%>/manageItems.jsp" class="dashboard-btn">Manage Items</a>
+    <a href="<%=request.getContextPath()%>/manageItems/add-items.jsp" class="dashboard-btn">Add New Items</a>
+    <a href="<%=request.getContextPath()%>/manageItems/manage-items.jsp" class="dashboard-btn">Manage Items</a>
+    <a href="<%=request.getContextPath()%>/manageBills/add-bill.jsp" class="dashboard-btn">Add New Bill</a>
+    <a href="<%=request.getContextPath()%>/help" class="dashboard-btn">Help</a>
+
   </div>
 
   <a href="<%=request.getContextPath()%>/logout" class="logout-btn">Logout</a>

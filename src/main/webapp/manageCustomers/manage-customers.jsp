@@ -1,11 +1,10 @@
 <%@ page import="java.util.List" %>
-<%@ page import="persistence.model.Customer" %>
-<%@ page import="persistence.dao.CustomerDAO" %>
-<%@ page import="persistence.dao.CustomerDAOImpl" %>
-<%@ page import="persistence.model.User" %>
+<%@ page import="com.pahanaedu.model.Customer" %>
+<%@ page import="dao.CustomerDAO" %>
+<%@ page import="dao.CustomerDAOImpl" %>
+<%@ page import="com.pahanaedu.model.User" %>
 
 <%
-  // Check if user is logged in
   User loggedUser = (User) session.getAttribute("user");
   if (loggedUser == null) {
     response.sendRedirect(request.getContextPath() + "/login.jsp");
@@ -48,7 +47,7 @@
     <tr>
       <td><%= c.getAccountNumber() %></td>
       <td><%= c.getName() %></td>
-      <td><%= c.getTelephone() %></td>
+      <td><%= c.getPhone() %></td>
       <td><%= c.getAddress() %></td>
       <td><%= c.getUnitsConsumed() %></td>
       <td>

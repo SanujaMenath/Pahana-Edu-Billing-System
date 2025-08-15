@@ -1,4 +1,4 @@
-<%@ page import="persistence.model.User" %>
+<%@ page import="com.pahanaedu.model.User" %>
 <%
     User user = (User) session.getAttribute("user");
     if (user == null) {
