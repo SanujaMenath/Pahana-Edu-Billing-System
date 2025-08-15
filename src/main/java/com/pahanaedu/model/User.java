@@ -7,8 +7,7 @@ public class User {
 
     public enum Role {
         admin,
-        staff,
-        customer
+        staff
     }
     private Role role;
 
