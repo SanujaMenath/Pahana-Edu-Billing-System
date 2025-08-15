@@ -17,7 +17,7 @@
     <input type="text" name="address" value="<%= customer.getAddress() %>"><br>
 
     <label>Telephone:</label>
-    <input type="text" name="telephone" value="<%= customer.getTelephone() %>"><br>
+    <input type="text" name="telephone" value="<%= customer.getPhone() %>"><br>
 
     <label>Units Consumed:</label>
     <input type="number" name="unitsConsumed" value="<%= customer.getUnitsConsumed() %>"><br>
