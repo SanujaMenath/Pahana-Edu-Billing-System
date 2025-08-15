@@ -29,6 +29,7 @@
     <a href="<%=request.getContextPath()%>/manageItems/add-items.jsp" class="dashboard-btn">Add New Items</a>
     <a href="<%=request.getContextPath()%>/manageItems/manage-items.jsp" class="dashboard-btn">Manage Items</a>
     <a href="<%=request.getContextPath()%>/manageBills/add-bill.jsp" class="dashboard-btn">Add New Bill</a>
+    <a href="<%=request.getContextPath()%>/help" class="dashboard-btn">Help</a>
 
   </div>
 

@@ -5,7 +5,6 @@
 <%@ page import="com.pahanaedu.model.User" %>
 
 <%
-  // Check if user is logged in
   User loggedUser = (User) session.getAttribute("user");
   if (loggedUser == null) {
     response.sendRedirect(request.getContextPath() + "/login.jsp");
@@ -48,7 +47,7 @@
     <tr>
       <td><%= c.getAccountNumber() %></td>
       <td><%= c.getName() %></td>
-      <td><%= c.getTelephone() %></td>
+      <td><%= c.getPhone() %></td>
       <td><%= c.getAddress() %></td>
       <td><%= c.getUnitsConsumed() %></td>
       <td>
