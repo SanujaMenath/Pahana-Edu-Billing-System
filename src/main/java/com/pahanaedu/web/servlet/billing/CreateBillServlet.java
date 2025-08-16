@@ -17,6 +17,15 @@ public class CreateBillServlet extends HttpServlet {
     private BillService billService = new BillService();
     private CustomerService customerService = new CustomerService();
 
+    //  Added for unit testing
+    public void setBillService(BillService billService) {
+        this.billService = billService;
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String phone = req.getParameter("phone");

@@ -11,7 +11,17 @@ import java.io.*;
 
 @WebServlet("/manageCustomers/add-customer")
 public class AddCustomerServlet extends HttpServlet {
-    private CustomerService customerService = new CustomerService();
+    private CustomerService customerService;
+
+    // default constructor for production
+    public AddCustomerServlet() {
+        this.customerService = new CustomerService();
+    }
+
+    // constructor for testing
+    public AddCustomerServlet(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

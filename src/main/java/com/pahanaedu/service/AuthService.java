@@ -10,6 +10,11 @@ public class AuthService {
         this.userDAO = new UserDAOImpl();
     }
 
+    // Constructor injection for testing
+    public AuthService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
     public User login(String username, String password) {
         User user = userDAO.findByUsername(username);
         if (user != null && user.getPassword().equals(password)) {
