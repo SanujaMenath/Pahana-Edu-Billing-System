@@ -17,6 +17,11 @@ public class LoginServlet extends HttpServlet {
         userService = new UserService(new UserDAOImpl());
     }
 
+    // For testing
+    void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");

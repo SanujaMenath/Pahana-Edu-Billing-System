@@ -14,9 +14,12 @@ import java.io.*;
 public class AddItemServlet extends HttpServlet {
     private ItemService itemService = new ItemService();
 
+    public void setItemService(ItemService itemService) {
+        this.itemService = itemService;
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         double price = Double.parseDouble(request.getParameter("price"));
