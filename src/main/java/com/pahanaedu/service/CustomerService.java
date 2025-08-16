@@ -13,7 +13,11 @@ public class CustomerService {
         this.customerDAO = new CustomerDAOImpl();
     }
 
-    // Add a new customer
+    // constructor for testing
+    public CustomerService(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
+    }
+
     public void addCustomer(Customer customer) throws Exception {
         if (customer.getName() == null || customer.getName().isEmpty()) {
             throw new Exception("Customer name cannot be empty.");
@@ -30,17 +34,14 @@ public class CustomerService {
         customerDAO.addCustomer(customer);
     }
 
-    // Get all customers
     public List<Customer> getAllCustomers() throws Exception {
         return customerDAO.getAllCustomers();
     }
 
-    // Get a customer by account number
     public Customer getCustomerById(int accountNumber) throws Exception {
         return customerDAO.getCustomerByAccountNumber(accountNumber);
     }
 
-    // Update customer info
     public void updateCustomer(Customer customer) throws Exception {
         if (customer.getAccountNumber() <= 0) {
             throw new Exception("Invalid account number.");
@@ -49,7 +50,6 @@ public class CustomerService {
         customerDAO.updateCustomer(customer);
     }
 
-    // Delete a customer
     public void deleteCustomer(int accountNumber) throws Exception {
         customerDAO.deleteCustomer(accountNumber);
     }

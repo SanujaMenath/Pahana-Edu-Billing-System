@@ -16,6 +16,14 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Mockito -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.5.0</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- MySQL Driver -->
     <dependency>
       <groupId>mysql</groupId>

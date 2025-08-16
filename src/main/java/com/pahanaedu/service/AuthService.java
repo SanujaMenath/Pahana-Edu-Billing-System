@@ -7,7 +7,7 @@ public class AuthService {
     private UserDAO userDAO;
 
     public AuthService() {
-        this.userDAO = new UserDAOImpl(); // ✅ This is fine
+        this.userDAO = new UserDAOImpl();
     }
 
     public User login(String username, String password) {
