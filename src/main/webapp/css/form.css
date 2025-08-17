@@ -1,0 +1,109 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form Container */
+.form-container {
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+/* Title */
+.form-container h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Labels */
+.form-container label {
+    display: block;
+    margin-bottom: 6px;
+    text-align: left;
+    font-weight: 600;
+    color: #444;
+    font-size: 14px;
+}
+
+/* Inputs */
+.form-container input,
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+/* Submit Button */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Links (Back, Login, etc.) */
+.form-container a {
+    display: inline-block;
+    margin-top: 16px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #007bff;
+    transition: color 0.2s ease;
+}
+
+.form-container a:hover {
+    color: #0056b3;
+}
+
+/* Error / Success Messages */
+.form-container .message {
+    margin-bottom: 18px;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-container .error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+.form-container .success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}

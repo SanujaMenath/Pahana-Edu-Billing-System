@@ -1,7 +1,19 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.pahanaedu.model.Item" %>
 <%@ page import="com.pahanaedu.service.ItemService" %>
+<%@ page import="com.pahanaedu.model.User" %>
+<%
+    User user = (User) session.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect(request.getContextPath() + "/unauthorized.jsp");
+        return;
+    }
 
+    String dashboardPage = "staff-dashboard.jsp";
+    if ("ADMIN".equalsIgnoreCase(user.getRole().toString())) {
+        dashboardPage = "admin-dashboard.jsp";
+    }
+%>
 <%
     ItemService itemService = new ItemService();
     List<Item> items = itemService.getAllItems();
@@ -12,82 +24,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Bill</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            width: 700px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2, h3 {
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 4px;
-            margin-bottom: 15px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th, td {
-            padding: 8px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-
-        button {
-            background-color: #28a745;
-            color: white;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-        }
-
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../css/bill.css">
 </head>
 <body>
-<div class="container">
+<div class="bill-container">
     <h2>Add New Bill</h2>
+
+    <a href="<%=request.getContextPath()%>/<%=dashboardPage%>">Back to Dashboard</a>
 
     <form action="<%=request.getContextPath()%>/manageBills/create" method="post">
         <label for="phone">Customer Phone</label>
         <input type="text" id="phone" name="phone" required>
 
         <h3>Bill Items</h3>
-        <table id="billItems">
+        <table id="billItems" class="bill-table">
             <thead>
             <tr>
                 <th>Item</th>
@@ -98,13 +48,13 @@
             </tr>
             </thead>
             <tbody>
-            <!-- initial row can be empty -->
+            <!-- Rows will be added dynamically -->
             </tbody>
         </table>
 
-        <button type="button" onclick="addNewRow()">+ Add Item</button>
+        <button type="button" class="bill-btn" onclick="addNewRow()">+ Add Item</button>
         <br><br>
-        <button type="submit">Save Bill</button>
+        <button type="submit" class="bill-btn">Save Bill</button>
     </form>
 </div>
 
@@ -120,19 +70,17 @@
         const row = document.createElement("tr");
 
         row.innerHTML = `
-    <td>
-        <select name="item_id" onchange="updateUnitPrice(this)">
-            <option value="" selected disabled>-- Select --</option>
-            ${itemOptions}
-        </select>
-    </td>
-    <td><input type="text" name="price" readonly></td>
-    <td><input type="number" name="quantity" min="1" value="1" onchange="updateTotal(this)"></td>
-    <td><input type="text" name="total_amount" readonly></td>
-    <td><button type="button" class="btn-danger" onclick="this.closest('tr').remove()">X</button></td>
-`;
-
-
+            <td>
+                <select name="item_id" onchange="updateUnitPrice(this)">
+                    <option value="" selected disabled>-- Select --</option>
+                    ${itemOptions}
+                </select>
+            </td>
+            <td><input type="text" name="price" readonly></td>
+            <td><input type="number" name="quantity" min="1" value="1" onchange="updateTotal(this)"></td>
+            <td><input type="text" name="total_amount" readonly></td>
+            <td><button type="button" class="bill-btn-danger" onclick="this.closest('tr').remove()">X</button></td>
+        `;
         tbody.appendChild(row);
     }
 

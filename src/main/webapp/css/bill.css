@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Bill Page Container */
+.bill-container {
+    width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bill-container h2,
+.bill-container h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Form Labels & Inputs */
+.bill-container label {
+    display: block;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.bill-container form{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.bill-container input,
+.bill-container select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Table Styling */
+.bill-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.bill-table th,
+.bill-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.bill-table th {
+    background-color: #f1f1f1;
+}
+
+/* Buttons */
+.bill-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.bill-btn:hover {
+    background-color: #218838;
+}
+
+.bill-btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bill-btn-danger:hover {
+    background-color: #c82333;
+}

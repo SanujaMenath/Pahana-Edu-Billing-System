@@ -1,8 +1,20 @@
+<%@ page import="com.pahanaedu.model.User" %>
+<%
+    User user = (User) session.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect(request.getContextPath() + "/unauthorized.jsp");
+        return;
+    }
 
+    String dashboardPage = "staff-dashboard.jsp";
+    if ("ADMIN".equalsIgnoreCase(user.getRole().toString())) {
+        dashboardPage = "admin-dashboard.jsp";
+    }
+%>
 <html>
 <head>
     <title>Pahan Edu - Add Customer</title>
-    <link rel="stylesheet" type="text/css" href="../css/add-customer.css">
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
 </head>
 <body>
 <div class="form-container">
@@ -21,6 +33,8 @@
             <button type="submit">Add Customer</button>
         </div>
     </form>
+
+    <a href="<%=request.getContextPath()%>/<%=dashboardPage%>">Back to Dashboard</a>
 </div>
 </body>
 </html>
