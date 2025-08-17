@@ -29,7 +29,6 @@ public class CreateBillServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String phone = req.getParameter("phone");
-        String[] billIds = req.getParameterValues("bill_id");
         String[] itemIds = req.getParameterValues("item_id");
         String[] units = req.getParameterValues("quantity");
         String[] unitPrices = req.getParameterValues("price");
@@ -67,7 +66,25 @@ public class CreateBillServlet extends HttpServlet {
 
         try {
             billService.createBill(bill);
-            resp.sendRedirect(req.getContextPath() + "/staff-dashboard.jsp?message=Bill created successfully");
+
+            //  Getting logged user role from session
+            HttpSession session = req.getSession(false);
+            String redirectPage = "staff-dashboard.jsp"; // default
+            if (session != null) {
+                Object userObj = session.getAttribute("user");
+                if (userObj != null) {
+                    com.pahanaedu.model.User user = (com.pahanaedu.model.User) userObj;
+                    if ("admin".equalsIgnoreCase(user.getRole().toString())) {
+                        redirectPage = "admin-dashboard.jsp";
+                    } else if ("staff".equalsIgnoreCase(user.getRole().toString())) {
+                        redirectPage = "staff-dashboard.jsp";
+                    }
+
+                }
+            }
+
+            resp.sendRedirect(req.getContextPath() + "/" + redirectPage + "?message=Bill created successfully");
+
         } catch (Exception e) {
             e.printStackTrace();
             resp.getWriter().println("Error creating bill: " + e.getMessage());

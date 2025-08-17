@@ -7,8 +7,12 @@
 <%
   User loggedUser = (User) session.getAttribute("user");
   if (loggedUser == null) {
-    response.sendRedirect(request.getContextPath() + "/login.jsp");
+    response.sendRedirect(request.getContextPath() + "/unauthorized.jsp");
     return;
+  }
+  String dashboardPage = "staff-dashboard.jsp";
+  if ("ADMIN".equalsIgnoreCase(loggedUser.getRole().toString())) {
+    dashboardPage = "admin-dashboard.jsp";
   }
 
   CustomerDAO customerDAO = new CustomerDAOImpl();
@@ -26,12 +30,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Manage Customers</title>
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dashboard.css">
+  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/management.css">
 </head>
 <body>
-<div class="dashboard-container">
+<div class="management-container">
   <h2>Customer Management</h2>
-  <table border="1" cellpadding="10" cellspacing="0">
+
+  <a class="btn-secondary" href="<%=request.getContextPath()%>/<%=dashboardPage%>">Back to Dashboard</a>
+
+  <table>
     <tr>
       <th>Account Number</th>
       <th>Name</th>

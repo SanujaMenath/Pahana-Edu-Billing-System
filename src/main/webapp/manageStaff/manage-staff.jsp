@@ -16,14 +16,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Staff</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/table.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/management.css">
 </head>
 <body>
-<div class="table-container">
+<div class="management-container">
     <h2>Manage Staff</h2>
 
-    <a href="<%=request.getContextPath()%>/manageStaff/add-staff.jsp">Add New Staff</a>
-    <a href="<%=request.getContextPath()%>/admin-dashboard.jsp">Back to Dashboard</a>
+    <div class="management-actions">
+        <a href="<%=request.getContextPath()%>/manageStaff/add-staff.jsp" class="btn-primary">Add New Staff</a>
+        <a href="<%=request.getContextPath()%>/admin-dashboard.jsp" class="btn-secondary">Back to Dashboard</a>
+    </div>
+
     <table>
         <thead>
         <tr>
@@ -34,7 +37,8 @@
         </thead>
         <tbody>
         <%
-            for (User staff : staffList) {
+            if (staffList != null && !staffList.isEmpty()) {
+                for (User staff : staffList) {
         %>
         <tr>
             <td><%= staff.getId() %></td>
@@ -42,16 +46,22 @@
             <td>
                 <form action="<%=request.getContextPath()%>/manageStaff/delete-staff" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<%= staff.getId() %>">
-                    <button type="submit">Delete</button>
+                    <button type="submit" class="btn-danger">Delete</button>
                 </form>
             </td>
+        </tr>
+        <%
+            }
+        } else {
+        %>
+        <tr>
+            <td colspan="3" style="text-align:center;">No staff found</td>
         </tr>
         <%
             }
         %>
         </tbody>
     </table>
-
 </div>
 </body>
 </html>

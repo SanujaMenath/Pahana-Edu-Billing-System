@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="dao.ItemDAO" %>
 <%@ page import="dao.ItemDAOImpl" %>
+<%@ page import="com.pahanaedu.model.User" %>
 <%
     String msg = request.getParameter("success");
     if (msg != null) {
@@ -17,7 +18,15 @@
     } catch (Exception e) {
         e.printStackTrace();
     }
-
+    User user = (User) session.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect(request.getContextPath() + "/unauthorized.jsp");
+        return;
+    }
+    String dashboardPage = "staff-dashboard.jsp";
+    if ("ADMIN".equalsIgnoreCase(user.getRole().toString())) {
+        dashboardPage = "admin-dashboard.jsp";
+    }
 %>
 
 <!DOCTYPE html>
@@ -25,11 +34,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Items</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/management.css">
 </head>
 <body>
-<div class="dashboard-container">
+<div class="management-container">
     <h2>Manage Items</h2>
+
+    <a class="btn-secondary" href="<%=request.getContextPath()%>/<%=dashboardPage%>">Back to Dashboard</a>
+
     <table border="1" cellpadding="10" cellspacing="0" >
         <thead>
         <tr>
