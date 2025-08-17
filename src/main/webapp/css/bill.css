@@ -88,3 +88,15 @@ body {
 .bill-btn-danger:hover {
     background-color: #c82333;
 }
+
+/* Back link */
+.btn-secondary{
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.btn-secondary:hover{
+    color: #21618c;
+}

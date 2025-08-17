@@ -30,7 +30,7 @@
 <div class="bill-container">
     <h2>Add New Bill</h2>
 
-    <a href="<%=request.getContextPath()%>/<%=dashboardPage%>">Back to Dashboard</a>
+    <a class="btn-secondary" href="<%=request.getContextPath()%>/<%=dashboardPage%>">Back to Dashboard</a>
 
     <form action="<%=request.getContextPath()%>/manageBills/create" method="post">
         <label for="phone">Customer Phone</label>
@@ -54,7 +54,7 @@
 
         <button type="button" class="bill-btn" onclick="addNewRow()">+ Add Item</button>
         <br><br>
-        <button type="submit" class="bill-btn">Save Bill</button>
+        <button type="submit" class="bill-btn">Print Bill</button>
     </form>
 </div>
 
