@@ -6,12 +6,12 @@ A simple web-based billing system built with **Java Servlets**, **JSP**, and **M
 
 ## 🚀 Features
 
--🔐 Secure Login & Role-based Access (Admin & Staff)
--👩‍💼 Admin: Manage staff accounts
--👨‍💼 Staff: Manage customers and billing
--📊 Billing & Payment management
--📄 Clean MVC architecture for maintainability
--🌐 Runs on Apache Tomcat
+-🔐 Secure Login & Role-based Access (Admin & Staff)  
+-👩‍💼 Admin: Manage staff accounts 
+-👨‍💼 Staff: Manage customers and billing  
+-📊 Billing & Payment management  
+-📄 Clean MVC architecture for maintainability  
+-🌐 Runs on Apache Tomcat  
 
 ---
 
@@ -31,30 +31,25 @@ A simple web-based billing system built with **Java Servlets**, **JSP**, and **M
  
 Before running the application, ensure you have:
 
-☕ Java Development Kit (JDK) 11 or higher
-
-🐱 Apache Tomcat 10.x server
-
-🗄️ MySQL 8.0+ database server
-
-🔧 Maven 3.6+ for build management
-
-🟨 WAMP/XAMPP (for local MySQL development)
-
-💻 IDE like IntelliJ IDEA (recommended) with Smart Tomcat plugin
+☕ Java Development Kit (JDK) 11 or higher  
+🐱 Apache Tomcat 10.x server  
+🗄️ MySQL 8.0+ database server  
+🔧 Maven 3.6+ for build management  
+🟨 WAMP/XAMPP (for local MySQL development)  
+💻 IDE like IntelliJ IDEA (recommended) with Smart Tomcat plugin  
 
 ---
 
 ## 📁 Project Structure 
 
 PahanaEduBillingSystem/
-├── 📁 src/
-│   └── 📁 main/
-│       ├── 📁 java/
-│       │   └── 📁 com/pahanaedu/     # Java source files (Models, Services, Servlets)
-│       └── 📁 webapp/                # JSP pages, static files (HTML, CSS, JS)
-├── 📄 pom.xml                        # Maven build configuration
-└── 📄 README.md                      # Project documentation
+├── 📁 src/  
+│   └── 📁 main/  
+│       ├── 📁 java/  
+│       │   └── 📁 com/pahanaedu/      # Java source files (Models, Services, Servlets)  
+│       └── 📁 webapp/                 # JSP pages, static files (HTML, CSS, JS)  
+├── 📄 pom.xml                         # Maven build configuration  
+└── 📄 README.md                       # Project documentation   
 
 ---
 
@@ -105,23 +100,22 @@ Follow these steps to run the project locally:
 - The project includes comprehensive testing coverage:
 - Test Structure
 
-Unit Tests: Individual component testing with JUnit 5
-Test Coverage: 50%+ code coverage maintained
+* Unit Tests: Individual component testing with JUnit 5  
+* Test Coverage: 50%+ code coverage maintained  
 
 Test Categories
 
-✅ Authentication & Authorization
-✅ Customer CRUD operations
-✅ Item management functionality
-✅ Billing calculation accuracy
-✅ Database connectivity
+✅ Authentication & Authorization  
+✅ Customer CRUD operations  
+✅ Item management functionality  
+✅ Billing calculation accuracy  
+✅ Database connectivity  
 
 ---
 
 ## 🚀 Deployment & CI/CD
 
-
-- Branches were merged into main after testing.
+- Branches were merged into main after testing.  
 
 ---
 
