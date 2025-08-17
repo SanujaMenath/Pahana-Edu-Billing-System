@@ -2,17 +2,17 @@
 <%
   User user = (User) session.getAttribute("user");
   if (user == null) {
-    response.sendRedirect(request.getContextPath() + "/login.jsp");
-    return;
-  }
-  if (!"STAFF".equalsIgnoreCase(user.getRole().toString())) {
     response.sendRedirect(request.getContextPath() + "/unauthorized.jsp");
     return;
+  }
+  String dashboardPage = "staff-dashboard.jsp";
+  if ("ADMIN".equalsIgnoreCase(user.getRole().toString())) {
+    dashboardPage = "admin-dashboard.jsp";
   }
 %>
 
 <%
-  String msg = request.getParameter("success"); // Read from URL parameter
+  String msg = request.getParameter("success");
   if (msg != null) {
 %>
 <script>
@@ -27,10 +27,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Add New Item</title>
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dashboard.css">
+  <link rel="stylesheet" type="text/css" href="../css/form.css">
 </head>
 <body>
-<div class="dashboard-container">
+<div class="form-container">
   <h2>Add New Item</h2>
   <form action="<%= request.getContextPath() %>/manageItems/add-item" method="post">
     <label for="name">Item Name:</label>
@@ -47,6 +47,7 @@
 
     <button class="" type="submit">Add Item</button>
   </form>
+  <a href="<%=request.getContextPath()%>/<%=dashboardPage%>">Back to Dashboard</a>
 </div>
 </body>
 </html>
