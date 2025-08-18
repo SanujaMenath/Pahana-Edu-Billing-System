@@ -42,7 +42,7 @@
 
     <a class="btn-secondary" href="<%=request.getContextPath()%>/<%=dashboardPage%>">Back to Dashboard</a>
 
-    <table border="1" cellpadding="10" cellspacing="0" >
+    <table>
         <thead>
         <tr>
             <th>ID</th>
@@ -59,13 +59,19 @@
                 for (Item item : items) {
         %>
         <tr>
-            <td><%= item.getId() %></td>
-            <td><%= item.getName() %></td>
-            <td><%= item.getDescription() %></td>
-            <td><%= item.getPrice() %></td>
-            <td><%= item.getQuantity() %></td>
+            <td><%= item.getId() %>
+            </td>
+            <td><%= item.getName() %>
+            </td>
+            <td><%= item.getDescription() %>
+            </td>
+            <td><%= item.getPrice() %>
+            </td>
+            <td><%= item.getQuantity() %>
+            </td>
             <td>
-                <a href="<%= request.getContextPath() %>/manageItems/edit-item.jsp?id=<%= item.getId() %>">Edit</a> |
+                <a href="<%= request.getContextPath() %>/manageItems/edit-item.jsp?itemId=<%= item.getId() %>">Edit</a>
+                |
                 <a href="<%= request.getContextPath() %>/manageItems/delete-item?id=<%= item.getId() %>"
                    onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
             </td>

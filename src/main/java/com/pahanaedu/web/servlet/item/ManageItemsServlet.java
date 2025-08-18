@@ -1,7 +1,6 @@
 package com.pahanaedu.web.servlet.item;
 
 import com.pahanaedu.service.ItemService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ public class ManageItemsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws  IOException {
         try {
             List<Item> items = itemService.getAllItems();
             request.setAttribute("items", items);
