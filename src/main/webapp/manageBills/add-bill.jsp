@@ -36,6 +36,15 @@
         <label for="phone">Customer Phone</label>
         <input type="text" id="phone" name="phone" required>
 
+        <%
+            String errorMsg = request.getParameter("error");
+            if (errorMsg != null) {
+        %>
+        <p style="color:red; font-weight:bold;"><%= errorMsg %></p>
+        <%
+            }
+        %>
+
         <h3>Bill Items</h3>
         <table id="billItems" class="bill-table">
             <thead>
@@ -43,7 +52,7 @@
                 <th>Item</th>
                 <th>Unit Price</th>
                 <th>Units</th>
-                <th>Total</th>
+                <th>Sub Totals</th>
                 <th></th>
             </tr>
             </thead>
@@ -53,6 +62,8 @@
         </table>
 
         <button type="button" class="bill-btn" onclick="addNewRow()">+ Add Item</button>
+        <h3>Total Price: Rs. <span id="grandTotal">0.00</span></h3>
+
         <br><br>
         <button type="submit" class="bill-btn">Print Bill</button>
     </form>
@@ -79,9 +90,17 @@
             <td><input type="text" name="price" readonly></td>
             <td><input type="number" name="quantity" min="1" value="1" onchange="updateTotal(this)"></td>
             <td><input type="text" name="total_amount" readonly></td>
-            <td><button type="button" class="bill-btn-danger" onclick="this.closest('tr').remove()">X</button></td>
+            <td><button type="button" class="bill-btn-danger" onclick="this.closest('tr').remove(); updateGrandTotal();">X</button></td>
         `;
         tbody.appendChild(row);
+    }
+
+    function updateGrandTotal() {
+        let total = 0;
+        document.querySelectorAll('input[name="total_amount"]').forEach(input => {
+            total += parseFloat(input.value) || 0;
+        });
+        document.getElementById('grandTotal').innerText = total.toFixed(2);
     }
 
     function updateUnitPrice(select) {
@@ -96,7 +115,9 @@
         const price = parseFloat(row.querySelector('input[name="price"]').value) || 0;
         const units = parseInt(input.value) || 0;
         row.querySelector('input[name="total_amount"]').value = (price * units).toFixed(2);
+        updateGrandTotal();
     }
+
 </script>
 </body>
 </html>

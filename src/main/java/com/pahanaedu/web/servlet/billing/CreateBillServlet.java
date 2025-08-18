@@ -3,6 +3,7 @@ package com.pahanaedu.web.servlet.billing;
 import com.pahanaedu.model.Bill;
 import com.pahanaedu.model.BillItem;
 import com.pahanaedu.model.Customer;
+import com.pahanaedu.model.User;
 import com.pahanaedu.service.BillService;
 import com.pahanaedu.service.CustomerService;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,10 +15,11 @@ import java.util.List;
 
 @WebServlet("/manageBills/create")
 public class CreateBillServlet extends HttpServlet {
+
     private BillService billService = new BillService();
     private CustomerService customerService = new CustomerService();
 
-    //  Added for unit testing
+    // For unit testing
     public void setBillService(BillService billService) {
         this.billService = billService;
     }
@@ -28,14 +30,22 @@ public class CreateBillServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         String phone = req.getParameter("phone");
         String[] itemIds = req.getParameterValues("item_id");
         String[] units = req.getParameterValues("quantity");
         String[] unitPrices = req.getParameterValues("price");
 
-
+        // --- Fetch customer ---
         Customer customer = customerService.getCustomerByPhone(phone);
 
+        if (customer == null) {
+            // Customer not found → redirect back with error
+            resp.sendRedirect(req.getContextPath() + "/manageBills/add-bill.jsp?error=Customer+not+found");
+            return;
+        }
+
+        // --- Create Bill ---
         Bill bill = new Bill();
         bill.setCustomerId(customer.getId());
         bill.setDateCreated(new java.util.Date());
@@ -67,28 +77,27 @@ public class CreateBillServlet extends HttpServlet {
         try {
             billService.createBill(bill);
 
-            //  Getting logged user role from session
+            // --- Determine redirect based on user role ---
             HttpSession session = req.getSession(false);
             String redirectPage = "staff-dashboard.jsp"; // default
+
             if (session != null) {
                 Object userObj = session.getAttribute("user");
-                if (userObj != null) {
-                    com.pahanaedu.model.User user = (com.pahanaedu.model.User) userObj;
-                    if ("admin".equalsIgnoreCase(user.getRole().toString())) {
+                if (userObj instanceof User user) {
+                    String role = user.getRole().toString();
+                    if ("ADMIN".equalsIgnoreCase(role)) {
                         redirectPage = "admin-dashboard.jsp";
-                    } else if ("staff".equalsIgnoreCase(user.getRole().toString())) {
+                    } else if ("STAFF".equalsIgnoreCase(role)) {
                         redirectPage = "staff-dashboard.jsp";
                     }
-
                 }
             }
 
-            resp.sendRedirect(req.getContextPath() + "/" + redirectPage + "?message=Bill created successfully");
+            resp.sendRedirect(req.getContextPath() + "/" + redirectPage + "?message=Bill+created+successfully");
 
         } catch (Exception e) {
             e.printStackTrace();
             resp.getWriter().println("Error creating bill: " + e.getMessage());
         }
-
     }
 }
