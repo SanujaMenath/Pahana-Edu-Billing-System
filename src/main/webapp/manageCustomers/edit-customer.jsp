@@ -5,22 +5,31 @@
     CustomerDAO dao = new CustomerDAOImpl();
     Customer customer = dao.getCustomerByAccountNumber(accountNumber);
 %>
+<html>
+<head>
+    <title>Pahan Edu - Edit Customer</title>
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
+</head>
+<body>
+<div class="form-container">
+    <h2>Edit Customer</h2>
+    <form action="update-customer" method="post">
+        <input type="hidden" name="accountNumber" value="<%= customer.getAccountNumber() %>">
 
-<h2>Edit Customer</h2>
-<form action="update-customer" method="post">
-    <input type="hidden" name="accountNumber" value="<%= customer.getAccountNumber() %>">
+        <label>Name:</label>
+        <input type="text" name="name" value="<%= customer.getName() %>"><br>
 
-    <label>Name:</label>
-    <input type="text" name="name" value="<%= customer.getName() %>"><br>
+        <label>Address:</label>
+        <input type="text" name="address" value="<%= customer.getAddress() %>"><br>
 
-    <label>Address:</label>
-    <input type="text" name="address" value="<%= customer.getAddress() %>"><br>
+        <label>Telephone:</label>
+        <input type="text" name="telephone" value="<%= customer.getPhone() %>"><br>
 
-    <label>Telephone:</label>
-    <input type="text" name="telephone" value="<%= customer.getPhone() %>"><br>
+        <label>Units Consumed:</label>
+        <input type="number" name="unitsConsumed" value="<%= customer.getUnitsConsumed() %>"><br>
 
-    <label>Units Consumed:</label>
-    <input type="number" name="unitsConsumed" value="<%= customer.getUnitsConsumed() %>"><br>
-
-    <button type="submit">Update</button>
-</form>
+        <button type="submit">Update</button>
+    </form>
+</div>
+</body>
+</html>

@@ -48,8 +48,15 @@
         <url-pattern>/add-customer</url-pattern>
     </servlet-mapping>
 
+    <!--  Session timeout config -->
+    <session-config>
+        <!-- Timeout after 15 minutes of inactivity -->
+        <session-timeout>15</session-timeout>
+    </session-config>
+
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+
 
 </web-app>

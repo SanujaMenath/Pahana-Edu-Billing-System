@@ -7,6 +7,6 @@ public interface ItemDAO {
     void addItem(Item item) throws Exception;
     List<Item> getAllItems() throws Exception;
     Item getItemById(int id) throws Exception;
-    void updateItem(Item item) throws Exception;
-    void deleteItem(int id) throws Exception;
+    boolean updateItem(Item item) throws Exception;
+    boolean deleteItem(int id) throws Exception;
 }

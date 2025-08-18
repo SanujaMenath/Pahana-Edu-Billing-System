@@ -67,27 +67,37 @@ public class ItemDAOImpl implements ItemDAO {
         return null;
     }
 
-    @Override
-    public void updateItem(Item item) throws Exception {
-        String sql = "UPDATE items SET name=?, description=?, price=?, quantity=? WHERE id=?";
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, item.getName());
-            stmt.setString(2, item.getDescription());
-            stmt.setDouble(3, item.getPrice());
-            stmt.setInt(4, item.getQuantity());
-            stmt.setInt(5, item.getId());
-            stmt.executeUpdate();
+    public boolean updateItem(Item item) {
+        boolean rowUpdated = false;
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     "UPDATE items SET name=?, description=?, price=?, quantity=? WHERE id=?")) {
+
+            ps.setString(1, item.getName());
+            ps.setString(2, item.getDescription());
+            ps.setDouble(3, item.getPrice());
+            ps.setInt(4, item.getQuantity());
+            ps.setInt(5, item.getId());
+
+            rowUpdated = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return rowUpdated;
     }
 
+
     @Override
-    public void deleteItem(int id) throws Exception {
-        String sql = "DELETE FROM items WHERE id=?";
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
+    public boolean deleteItem(int id) {
+        boolean rowDeleted = false;
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement("DELETE FROM items WHERE id=?")) {
+            ps.setInt(1, id);
+            rowDeleted = ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return rowDeleted;
     }
+
 }
